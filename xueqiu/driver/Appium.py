@@ -4,17 +4,20 @@
 # function:
 
 from appium import webdriver
-import pytest
-import unittest
-from time import sleep
-from appium.webdriver.common.touch_action import TouchAction
-import os
+from appium.webdriver.webdriver import WebDriver
+
 
 class Appium(object):
+
     driver = None
     "@type driver: WebDriver"
+    # driver: WebDriver = None
 
-    def setUp(self):
+    @classmethod
+    def getDriver(cls):
+        return cls.driver
+    @classmethod
+    def initDriver(cls):
         caps = {}
         caps["platformName"] = "android"
         caps["deviceName"] = "MIMax"
@@ -26,5 +29,5 @@ class Appium(object):
         # 从底层获取一些权限，规避获取权限的弹框
         caps["autoGrantPermissions"] = "true"
         # remote方法:远程连接命令行工具
-        self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-        self.driver.implicitly_wait(10)
+        cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+        cls.driver.implicitly_wait(10)
