@@ -11,6 +11,7 @@ class Appium(object):
 
     driver = None
     "@type driver: WebDriver"
+    # 下面方法适用于python 3.5以上
     # driver: WebDriver = None
 
     @classmethod

@@ -2,16 +2,22 @@
 # author:herui
 # time:2020/7/7 17:18
 # function:
+from selenium.webdriver.common.by import By
+from xueqiu.page.BasePage import BasePage
 from xueqiu.driver.Appium import Appium
 
 
-class Search(object):
+class Search(BasePage):
+    _search=(By.ID,"search_input_text")
+    _name = (By.ID, "name")
+    _usr = (By.XPATH, "//*[@text='用户']")
+    _usrName = (By.ID, "user_name")
     def search(self,keyword):
-        Appium.driver.find_element_by_id("search_input_text").send_keys(keyword)
+        self.find(*self._search).send_keys(keyword)
         return self
     def getStocks(self):
-        return Appium.driver.find_element_by_id("name").text
+        return self.find(*self._name).text
 
     def getUserName(self):
-        Appium.driver.find_element_by_xpath("//*[@text='用户']").click()
-        return Appium.driver.find_element_by_id("user_name").text
+        self.find(*self._usr).click()
+        return self.find(*self._usrName).text
