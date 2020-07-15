@@ -5,12 +5,12 @@
 from selenium.webdriver.common.by import By
 
 from xueqiu.driver.Appium import Appium
-from xueqiu.page.BasePage import BasePage
+from xueqiu.page.base_page import BasePage
 from xueqiu.page.search import Search
 
 
 class XueQiu(BasePage):
     _homeSearch = (By.ID, "home_search")
     def toSearch(self):
-        self.find(*self._homeSearch).click()
+        self.find(self._homeSearch).click()
         return Search()

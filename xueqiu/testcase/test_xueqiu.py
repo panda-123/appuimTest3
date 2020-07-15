@@ -5,7 +5,7 @@
 
 import unittest
 from xueqiu.driver.Appium import Appium
-from xueqiu.page import Xueqiu
+from xueqiu.page import xueqiu
 
 class test_XueQiu(unittest.TestCase):
 
@@ -14,12 +14,13 @@ class test_XueQiu(unittest.TestCase):
         # print(Appium.initDriver())
 
     def test_search(self):
-        assert Xueqiu.XueQiu().toSearch().search("pdd").getStocks() == "拼多多"
+        assert xueqiu.XueQiu().toSearch().search("pdd").getStocks() == "拼多多"
 
     def test_search_UserName(self):
-        xueqiu = Xueqiu.XueQiu()
-        searchpage = xueqiu.toSearch()
-        searchpage.search("herui")
-        assert searchpage.getUserName() == "herui"
+        # 判断用户中第一个人的姓名是不是叫 seveniruby
+        xueqiu2 = xueqiu.XueQiu()
+        searchpage = xueqiu2.toSearch()
+        searchpage.search("seveniruby").toNextPage()
+        assert searchpage.getUserName() >= "seveniruby"
 
 

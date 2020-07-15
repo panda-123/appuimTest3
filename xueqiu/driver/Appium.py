@@ -8,11 +8,10 @@ from appium.webdriver.webdriver import WebDriver
 
 
 class Appium(object):
-
-    driver = None
-    "@type driver: WebDriver"
+    # driver = None
+    # "@type driver: WebDriver"
     # 下面方法适用于python 3.5以上
-    # driver: WebDriver = None
+    driver: WebDriver = None
 
     @classmethod
     def getDriver(cls):
